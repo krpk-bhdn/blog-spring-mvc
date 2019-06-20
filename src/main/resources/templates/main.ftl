@@ -1,5 +1,18 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-    <p>Hello, ${name}</p>
+    <div class="card-columns">
+        <#list articles as article>
+            <div class="card">
+                <#if article.filename??>
+                    <img src="/img/${article.filename}" class="card-img-top" alt="...">
+                </#if>
+                <div class="card-body">
+                    <h5 class="card-title">${article.title[0..*100]}</h5>
+                    <p class="card-text">${article.text[0..*155]}...</p>
+                    <p class="card-text"><small class="text-muted">${article.publicationDate}</small></p>
+                </div>
+            </div>
+        </#list>
+    </div>
 </@c.page>

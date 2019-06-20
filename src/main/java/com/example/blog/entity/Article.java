@@ -2,7 +2,6 @@ package com.example.blog.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 public class Article {
@@ -12,6 +11,7 @@ public class Article {
     private Long id;
 
     private String title;
+    @Column(length = 5000)
     private String text;
 
     @ManyToOne(fetch = FetchType.EAGER)
