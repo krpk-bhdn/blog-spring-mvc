@@ -33,7 +33,7 @@
                     <div class="dropdown-divider"></div>
                     <#if isAdmin>
                         <a class="dropdown-item" href="/article">Articles</a>
-                        <a class="dropdown-item" href="#">Users</a>
+                        <a class="dropdown-item" href="/users">Users</a>
                         <a class="dropdown-item" href="#">Moderation</a>
                         <div class="dropdown-divider"></div>
                     </#if>

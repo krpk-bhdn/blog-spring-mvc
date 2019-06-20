@@ -35,7 +35,7 @@
             </div>
         </div>
         <input type="hidden" name="_csrf" value="${_csrf.token}" />
-        <button type="submit" class="btn btn-primary">Create</button>
+        <button type="submit" class="btn btn-dark">Create</button>
     </form>
 </#macro>
 
