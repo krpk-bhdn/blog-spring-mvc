@@ -26,14 +26,18 @@
         <#if know>
             <div class="dropdown mr-3">
                 <button type="button" class="btn btn-dark dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
-                    ${name}<#if isAdmin> [ADMIN]</#if>
+                    ${name}<#if isAdmin> [ADMIN]<#elseif isModerator> [MODERATOR]</#if>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuOffset">
-                    <a class="dropdown-item" href="#">Profile</a>
+                    <a class="dropdown-item" href="#">Your profile</a>
+                    <a class="dropdown-item" href="#">Your articles</a>
+                    <a class="dropdown-item" href="#">Your questions</a>
                     <div class="dropdown-divider"></div>
                     <#if isAdmin>
                         <a class="dropdown-item" href="/article">Articles</a>
                         <a class="dropdown-item" href="/users">Users</a>
+                    </#if>
+                    <#if isAdmin || isModerator>
                         <a class="dropdown-item" href="#">Moderation</a>
                         <div class="dropdown-divider"></div>
                     </#if>
