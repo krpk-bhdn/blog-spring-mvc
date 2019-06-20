@@ -8,17 +8,13 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 
 @Controller
 @RequestMapping("/article")
-@PreAuthorize("hasAuthority('ADMIN')")
 public class ArticleController {
     private final FileService fileService;
     private final ArticleService articleService;
@@ -29,11 +25,22 @@ public class ArticleController {
     }
 
     @GetMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String article(){
         return "addArticle";
     }
 
+    @GetMapping("{article}")
+    public String viewArticle(
+            @PathVariable Article article,
+            Model model
+    ){
+        model.addAttribute("article", article);
+        return "article";
+    }
+
     @PostMapping
+    @PreAuthorize("hasAuthority('ADMIN')")
     public String addArticle(
             @AuthenticationPrincipal User user,
             @RequestParam String title,
@@ -48,4 +55,5 @@ public class ArticleController {
 
         return "redirect:/";
     }
+
 }

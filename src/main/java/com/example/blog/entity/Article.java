@@ -1,7 +1,10 @@
 package com.example.blog.entity;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Entity
 public class Article {
@@ -29,6 +32,12 @@ public class Article {
         this.title = title;
         this.text = text;
         this.author = user;
+    }
+
+    public String formatedPublicationDate(){
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy, hh:mm a");
+        String dateTime = publicationDate.format(formatter);
+        return dateTime;
     }
 
     public Long getId() {

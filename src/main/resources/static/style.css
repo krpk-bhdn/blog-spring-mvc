@@ -1,0 +1,13 @@
+.article-link{
+    text-decoration: none;
+    outline: none;
+    color: #343A40;
+}
+
+.nav-link {
+    outline: none;
+}
+
+.navbar-brand {
+    outline: none;
+}
