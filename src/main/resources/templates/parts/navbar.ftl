@@ -29,7 +29,7 @@
                     ${name}<#if isAdmin> [ADMIN]<#elseif isModerator> [MODERATOR]</#if>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuOffset">
-                    <a class="dropdown-item" href="#">Your profile</a>
+                    <a class="dropdown-item" href="/profile">Your profile</a>
                     <a class="dropdown-item" href="#">Your articles</a>
                     <a class="dropdown-item" href="#">Your questions</a>
                     <div class="dropdown-divider"></div>
