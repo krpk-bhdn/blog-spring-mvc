@@ -19,7 +19,7 @@ public class MainController {
 
     @GetMapping("/")
     public String main(Model model){
-        List<Article> articles = articleRepository.findAll();
+        List<Article> articles = articleRepository.findByVerifyTrue();
         model.addAttribute("articles", articles);
         return "main";
     }

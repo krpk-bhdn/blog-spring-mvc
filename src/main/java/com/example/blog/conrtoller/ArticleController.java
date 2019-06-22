@@ -4,7 +4,6 @@ import com.example.blog.entity.Article;
 import com.example.blog.entity.User;
 import com.example.blog.service.ArticleService;
 import com.example.blog.service.FileService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +24,6 @@ public class ArticleController {
     }
 
     @GetMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public String article(){
         return "addArticle";
     }
@@ -40,7 +38,6 @@ public class ArticleController {
     }
 
     @PostMapping
-    @PreAuthorize("hasAuthority('ADMIN')")
     public String addArticle(
             @AuthenticationPrincipal User user,
             @RequestParam String title,
@@ -50,6 +47,7 @@ public class ArticleController {
             ) throws IOException {
         Article article = new Article(title, text, user);
         article.setFilename(fileService.uploadFile(file));
+        article.setVerify(user.isAdmin() || user.isModerator());
 
         articleService.addArticle(article);
 

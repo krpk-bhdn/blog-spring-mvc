@@ -11,7 +11,7 @@
                     <div class="card-body">
                         <h5 class="card-title">${article.title[0..*50]}</h5>
                         <p class="card-text">${article.text[0..*155]}...</p>
-                        <p class="card-text"><small class="text-muted">${article.formatedPublicationDate()}</small></p>
+                        <p class="card-text"><small class="text-muted">${article.formattedPublicationDate()}</small></p>
                     </div>
                 </div>
             </a>

@@ -36,5 +36,4 @@
             <button type="submit" class="btn btn-dark">Change password</button>
         </form>
     </div>
-
 </@c.page>

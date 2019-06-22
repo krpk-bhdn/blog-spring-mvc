@@ -1,7 +1,5 @@
 package com.example.blog.entity;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -14,7 +12,7 @@ public class Article {
     private Long id;
 
     private String title;
-    @Column(length = 5000)
+    @Column(length = 50000)
     private String text;
 
     @ManyToOne(fetch = FetchType.EAGER)
@@ -25,6 +23,8 @@ public class Article {
 
     private String filename;
 
+    private boolean verify;
+
     public Article() {
     }
 
@@ -34,7 +34,7 @@ public class Article {
         this.author = user;
     }
 
-    public String formatedPublicationDate(){
+    public String formattedPublicationDate(){
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy, hh:mm a");
         String dateTime = publicationDate.format(formatter);
         return dateTime;
@@ -82,5 +82,13 @@ public class Article {
 
     public void setPublicationDate(LocalDateTime publicationDate) {
         this.publicationDate = publicationDate;
+    }
+
+    public boolean isVerify() {
+        return verify;
+    }
+
+    public void setVerify(boolean verify) {
+        this.verify = verify;
     }
 }

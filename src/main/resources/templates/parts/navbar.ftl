@@ -26,6 +26,16 @@
         <#if know>
             <div class="dropdown mr-3">
                 <button type="button" class="btn btn-dark dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
+                    Add
+                </button>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuOffset">
+                    <a class="dropdown-item" href="/article">Add article</a>
+                    <a class="dropdown-item" href="#">Add question</a>
+                </div>
+            </div>
+
+            <div class="dropdown mr-3">
+                <button type="button" class="btn btn-dark dropdown-toggle" id="dropdownMenuOffset" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-offset="10,20">
                     ${name}<#if isAdmin> [ADMIN]<#elseif isModerator> [MODERATOR]</#if>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuOffset">
@@ -38,7 +48,7 @@
                         <a class="dropdown-item" href="/users">Users</a>
                     </#if>
                     <#if isAdmin || isModerator>
-                        <a class="dropdown-item" href="#">Moderation</a>
+                        <a class="dropdown-item" href="/moderation">Moderation</a>
                         <div class="dropdown-divider"></div>
                     </#if>
                     <@l.logout />
@@ -47,5 +57,4 @@
         <#else >
             <@l.login/>
         </#if>
-
 </nav>
