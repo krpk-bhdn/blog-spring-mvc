@@ -11,3 +11,8 @@
 .navbar-brand {
     outline: none;
 }
+
+.rounded-circle {
+    height: 70px;
+    width: 70px;
+}

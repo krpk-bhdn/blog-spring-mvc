@@ -3,6 +3,7 @@ package com.example.blog.entity;
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Set;
 
 @Entity
 public class Article {
@@ -24,6 +25,10 @@ public class Article {
     private String filename;
 
     private boolean verify;
+
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "article_id")
+    private Set<Comment> comments;
 
     public Article() {
     }
@@ -90,5 +95,13 @@ public class Article {
 
     public void setVerify(boolean verify) {
         this.verify = verify;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 }
