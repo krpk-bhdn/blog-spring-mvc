@@ -1,10 +1,8 @@
 <#import "parts/common.ftl" as c>
-<#import "parts/navEditor.ftl" as nav>
 <#import "parts/editor.ftl" as editor>
 
 <@c.page>
 
-    <@nav.navEdit isAdd=true/>
-    <@editor.editor/>
+    <@editor.editor isQuestion=true isEdit=true item=question/>
 
 </@c.page>

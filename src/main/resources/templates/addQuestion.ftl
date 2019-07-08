@@ -4,7 +4,7 @@
 
 <@c.page>
 
-    <@nav.navEdit isAdd=true/>
-    <@editor.editor/>
+    <@nav.navEdit isQuestion=true isAdd=true/>
+    <@editor.editor isQuestion=true/>
 
 </@c.page>

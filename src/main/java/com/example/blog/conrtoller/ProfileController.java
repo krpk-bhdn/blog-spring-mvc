@@ -3,6 +3,7 @@ package com.example.blog.conrtoller;
 import com.example.blog.entity.User;
 import com.example.blog.factory.FactoryBCryptPasswordEncoder;
 import com.example.blog.repository.UserRepository;
+import com.example.blog.service.FileService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -11,15 +12,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @Controller
 @RequestMapping("/profile")
 public class ProfileController {
 
     private final UserRepository userRepository;
+    private final FileService fileService;
 
-    public ProfileController(UserRepository userRepository) {
+    public ProfileController(
+            UserRepository userRepository,
+            FileService fileService
+    ) {
         this.userRepository = userRepository;
+        this.fileService = fileService;
     }
 
     @GetMapping
@@ -31,7 +40,36 @@ public class ProfileController {
         return "profile";
     }
 
-    @PostMapping("changeUsername")
+    @GetMapping("/settings")
+    public String settings(@AuthenticationPrincipal User user, Model model){
+        model.addAttribute("user", user);
+        return "settings";
+    }
+
+    @PostMapping("/settings/changeName")
+    public String changeFullName(
+            @RequestParam String fullName,
+            @AuthenticationPrincipal User user
+    ){
+        if(fullName != null && !fullName.isEmpty() && !user.getUsername().equals(fullName)){
+            user.setFullName(fullName);
+            userRepository.save(user);
+        }
+
+        return "redirect:/profile";
+    }
+
+    @PostMapping("/settings/changeAvatar")
+    public String changeAvatar(
+            @AuthenticationPrincipal User user,
+            @RequestParam("file") MultipartFile file
+    ) throws IOException {
+        user.setFilename(fileService.uploadFile(file, true));
+        userRepository.save(user);
+        return "redirect:/profile";
+    }
+
+    @PostMapping("/settings/changeUsername")
     public String changeUsername(
             @RequestParam String username,
             @AuthenticationPrincipal User user
@@ -44,7 +82,7 @@ public class ProfileController {
         return "redirect:/profile";
     }
 
-    @PostMapping("changePassword")
+    @PostMapping("/settings/changePassword")
     public String changePassword(
             @RequestParam String oldPassword,
             @RequestParam String newPassword,

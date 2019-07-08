@@ -27,10 +27,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers(
                             "/",
                             "/article/**",
+                            "/forum/**",
                             "/registration",
                             "/static/**",
                             "/img/**"
-                    ).permitAll()
+                    )
+                    .permitAll()
                     .anyRequest().authenticated()
                 .and()
                     .formLogin()
@@ -38,7 +40,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll()
                 .and()
                     .logout()
-                    .permitAll();
+                    .permitAll()
+                .and();
+
     }
 
     @Override

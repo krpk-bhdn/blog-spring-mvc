@@ -3,10 +3,10 @@ know = Session.SPRING_SECURITY_CONTEXT??
 >
 <#if know>
     <#assign
-    user = Session.SPRING_SECURITY_CONTEXT.authentication.principal
-    name = user.getUsername()
-    isAdmin = user.isAdmin()
-    isModerator = user.isModerator()
+    author = Session.SPRING_SECURITY_CONTEXT.authentication.principal
+    name = author.getUsername()
+    isAdmin = author.isAdmin()
+    isModerator = author.isModerator()
     >
 <#else>
     <#assign

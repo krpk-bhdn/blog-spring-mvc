@@ -1,6 +1,16 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
+
+    <nav class="nav nav-pills nav-fill mb-3">
+        <a class="nav-item nav-link text-light bg-dark rounded-0" href="/moderation">
+            Articles
+        </a>
+        <a class="nav-item nav-link text-dark bg-light rounded-0" href="/moderation/question">
+            Questions
+        </a>
+    </nav>
+
     <#if !articles?has_content>
         <h3>No articles for verify</h3>
     <#else >

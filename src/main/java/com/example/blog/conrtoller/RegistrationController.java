@@ -2,6 +2,7 @@ package com.example.blog.conrtoller;
 
 import com.example.blog.entity.User;
 import com.example.blog.factory.FactoryBCryptPasswordEncoder;
+import com.example.blog.service.FileService;
 import com.example.blog.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -13,9 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class RegistrationController {
 
     public final UserService userService;
+    public final FileService fileService;
 
-    public RegistrationController(UserService userService) {
+    public RegistrationController(
+            UserService userService,
+            FileService fileService
+    ) {
         this.userService = userService;
+        this.fileService = fileService;
     }
 
     @GetMapping("/registration")
@@ -28,6 +34,7 @@ public class RegistrationController {
 
         PasswordEncoder passwordEncoder = FactoryBCryptPasswordEncoder.getInstance();
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setFilename(fileService.defaulUserImage());
 
         if (!userService.addUser(user)){
             model.addAttribute("message", "User is exist");

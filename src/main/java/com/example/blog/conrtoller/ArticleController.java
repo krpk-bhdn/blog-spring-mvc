@@ -1,6 +1,8 @@
 package com.example.blog.conrtoller;
 
 import com.example.blog.entity.Article;
+import com.example.blog.entity.Comment;
+import com.example.blog.entity.SubComment;
 import com.example.blog.entity.User;
 import com.example.blog.service.ArticleService;
 import com.example.blog.service.FileService;
@@ -13,22 +15,14 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 @Controller
-@RequestMapping("/article")
 public class ArticleController {
-    private final FileService fileService;
     private final ArticleService articleService;
 
-    public ArticleController(FileService fileService, ArticleService articleService) {
-        this.fileService = fileService;
+    public ArticleController(ArticleService articleService) {
         this.articleService = articleService;
     }
 
-    @GetMapping
-    public String article(){
-        return "addArticle";
-    }
-
-    @GetMapping("{article}")
+    @GetMapping("/article/{article}")
     public String viewArticle(
             @PathVariable Article article,
             Model model
@@ -37,21 +31,27 @@ public class ArticleController {
         return "article";
     }
 
-    @PostMapping
-    public String addArticle(
+    @PostMapping("/article/{article}/addComment")
+    public String addComment(
+            @PathVariable Article article,
             @AuthenticationPrincipal User user,
-            @RequestParam String title,
-            @RequestParam String text,
-            @RequestParam("file") MultipartFile file,
-            Model model
-            ) throws IOException {
-        Article article = new Article(title, text, user);
-        article.setFilename(fileService.uploadFile(file));
-        article.setVerify(user.isAdmin() || user.isModerator());
+            @RequestParam String text
+    ){
+        Comment comment = new Comment(user, text);
+        articleService.addComment(article, comment);
+        return "redirect:/article/" + article.getId();
+    }
 
-        articleService.addArticle(article);
-
-        return "redirect:/";
+    @PostMapping("/article/{article}/{comment}/addSubComment")
+    public String addSubComment(
+            @PathVariable Article article,
+            @PathVariable Comment comment,
+            @AuthenticationPrincipal User user,
+            @RequestParam String text
+    ){
+        SubComment subComment = new SubComment(user, text);
+        articleService.addSubComment(comment, subComment);
+        return "redirect:/article/" + article.getId();
     }
 
 }

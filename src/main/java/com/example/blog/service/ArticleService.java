@@ -26,11 +26,13 @@ public class ArticleService {
     }
 
     public void addComment(Article article, Comment comment) {
+        comment.setPublicationDate(LocalDateTime.now());
         article.getComments().add(comment);
         articleRepository.save(article);
     }
 
     public void addSubComment(Comment comment, SubComment subComment) {
+        subComment.setPublicationDate(LocalDateTime.now());
         comment.getSubComments().add(subComment);
         commentRepository.save(comment);
     }

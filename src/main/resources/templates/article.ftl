@@ -6,5 +6,6 @@
 
 <@c.page>
     <@a.article article=article isConfirm=know && (isModerator || isAdmin) && !article.isVerify()/>
-    <@com.comments article=article/>
+    <@com.comments article=article isKnow=know/>
 </@c.page>
+

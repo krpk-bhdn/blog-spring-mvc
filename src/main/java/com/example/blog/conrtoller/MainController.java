@@ -18,9 +18,14 @@ public class MainController {
     }
 
     @GetMapping("/")
-    public String main(Model model){
-        List<Article> articles = articleRepository.findByVerifyTrue();
-        model.addAttribute("articles", articles);
+    public String main(){
         return "main";
+    }
+
+    @GetMapping("/blog")
+    public String blog(Model model){
+        List<Article> articles = articleRepository.findByVerifyTrueOrderByPublicationDateDesc();
+        model.addAttribute("articles", articles);
+        return "blog";
     }
 }
