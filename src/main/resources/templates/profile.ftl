@@ -1,39 +1,25 @@
 <#import "parts/common.ftl" as c>
 
 <@c.page>
-    <div>
-        <form action="/profile/changeUsername" method="post">
-            <input type="hidden" name="_csrf" value="${_csrf.token}">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Username</label>
-                <input type="text" class="form-control" name="username" placeholder="Username" value="${user.username}">
-                <small id="emailHelp" class="form-text text-muted">
-                    Your username must be 6-24 characters long, contain letters and numbers, and must not contain spaces,
-                    special characters, or emoji.
-                </small>
-            </div>
-            <button type="submit" class="btn btn-dark">Change username</button>
-        </form>
-    </div>
+    <div class="container marketing">
 
-
-    <div class="mt-5">
-        <form action="/profile/changePassword" method="post">
-            <input type="hidden" name="_csrf" value="${_csrf.token}">
-            <div class="form-group">
-                <label for="inputPassword5">Password</label>
-                <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock"
-                       placeholder="Old password" name="oldPassword">
-                <input type="password" id="inputPassword5" class="form-control mt-3" aria-describedby="passwordHelpBlock"
-                       placeholder="New password" name="newPassword">
-                <small id="passwordHelpBlock" class="form-text text-muted">
-                    Your password must be 8-20 characters long, contain letters and numbers, and must not contain spaces,
-                    special characters, or emoji.
-                </small>
-                <input type="password" id="inputPassword5" class="form-control mt-3" aria-describedby="passwordHelpBlock"
-                       placeholder="Repeat new password">
+        <div class="row featurette d-flex justify-content-center">
+            <div class="col-md-7 order-md-2 d-flex flex-column justify-content-between">
+                <h2 class="featurette-heading d-flex justify-content-between">
+                    ${user.username}
+                    <a href="/profile/settings">
+                        <i class="fas fa-cog text-dark" style="font-size: 22px;"></i>
+                    </a>
+                </h2>
+                <p class="lead d-flex">
+                    <a href="/editor" class="nav-item nav-link text-light bg-dark rounded-0">Articles</a>
+                    <a href="/editor/question" class="nav-item nav-link text-light bg-dark rounded-0 ml-2">Question</a>
+                </p>
             </div>
-            <button type="submit" class="btn btn-dark">Change password</button>
-        </form>
+            <div class="col-md-3 order-md-1">
+                <img src="/img/${user.filename}" style="width: 250px; height: 250px;">
+            </div>
+        </div>
+
     </div>
 </@c.page>

@@ -10,15 +10,18 @@
         <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js"></script>
         <script>tinymce.init({selector:'textarea'});</script>
         <script src="/static/scripts/script.js"></script>
+        <script src="https://kit.fontawesome.com/74a36b2169.js"></script>
 
 
         <title>JavaEvolve</title>
     </head>
-    <body>
+    <body class="bg-light">
     <#include "navbar.ftl">
     <div class="container my-5">
         <#nested>
     </div>
+
+    <#include "footer.ftl"/>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

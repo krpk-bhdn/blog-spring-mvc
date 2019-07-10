@@ -10,6 +10,7 @@ import java.util.List;
 public interface QuestionRepository extends JpaRepository<Question, Long> {
     List<Question> findByAuthor(User user);
     List<Question> findByVerifyTrueAndCategories(Category category);
-    List<Question> findByVerifyTrueAndCategoriesAndTitleStartingWith(Category category, String title);
+    List<Question> findByVerifyTrueAndCategoriesAndTitleContains(Category category, String title);
     List<Question> findByVerifyFalse();
+    Long countByVerifyTrue();
 }

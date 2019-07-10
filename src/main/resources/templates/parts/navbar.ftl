@@ -18,9 +18,6 @@
             <li class="nav-item active mr-2">
                 <a class="nav-link" href="/forum">Forum</a>
             </li>
-            <li class="nav-item active mr-2">
-                <a class="nav-link" href="#">About</a>
-            </li>
         </ul>
 
         <#if know>

@@ -18,8 +18,6 @@ public class User implements UserDetails {
     private String password;
     private boolean active;
 
-    private String fullName;
-
     private String filename;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
@@ -94,14 +92,6 @@ public class User implements UserDetails {
 
     public void setRoles(Set<Role> roles) {
         this.roles = roles;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
     }
 
     public String getFilename() {

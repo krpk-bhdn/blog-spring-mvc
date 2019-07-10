@@ -12,6 +12,10 @@
     outline: none;
 }
 
+.card-img-top {
+    height: 200px;
+
+}
 .rounded-circle {
     height: 70px;
     width: 70px;
@@ -23,4 +27,9 @@
     border-radius: 20px;
     background: #343A40;
     color: #FFFFFF;
+}
+
+.card:hover {
+    color: #1e3799;
+    animation-duration: 500ms;
 }

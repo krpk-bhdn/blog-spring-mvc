@@ -5,7 +5,7 @@
             <small class="text-muted">${article.author.username}</small>
             <small class="text-muted">${article.formattedPublicationDate()}</small>
         </div>
-        <img src="/img/${article.filename}" class="card-img-top mt-3">
+        <div class="text-center"><img src="/img/${article.filename}" class="img-fluid mt-3"></div>
         <p class="card-text mt-5">${article.text}</p>
     </div>
     <#if isConfirm>

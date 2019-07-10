@@ -6,7 +6,6 @@ import com.example.blog.entity.Question;
 import com.example.blog.entity.User;
 import com.example.blog.repository.QuestionRepository;
 import com.example.blog.service.QuestionService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -65,7 +64,7 @@ public class ForumController {
     @PostMapping("/forum")
     public String showForumSelectDiscussion(@RequestParam String title, Model model){
         List<Question> discussions =
-                questionRepository.findByVerifyTrueAndCategoriesAndTitleStartingWith(Category.DISCUSSION, title);
+                questionRepository.findByVerifyTrueAndCategoriesAndTitleContains(Category.DISCUSSION, title);
         model.addAttribute("discussions", discussions);
         return "forumDiscussion";
     }
@@ -73,7 +72,7 @@ public class ForumController {
     @PostMapping("/forum/support")
     public String showForumSupport(@RequestParam String title, Model model){
         List<Question> supports =
-                questionRepository.findByVerifyTrueAndCategoriesAndTitleStartingWith(Category.SUPPORT, title);
+                questionRepository.findByVerifyTrueAndCategoriesAndTitleContains(Category.SUPPORT, title);
         model.addAttribute("supports", supports);
         return "forumSupport";
     }

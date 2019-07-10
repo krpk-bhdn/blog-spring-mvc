@@ -16,17 +16,6 @@
     </div>
 
     <div class="mt-5">
-        <form action="/profile/settings/changeName" method="post">
-            <input type="hidden" name="_csrf" value="${_csrf.token}">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Full name</label>
-                <input type="text" class="form-control" name="username" placeholder="Username" value="<#if user.fullName??>${user.fullName}</#if>">
-            </div>
-            <button type="submit" class="btn btn-dark">Change full name</button>
-        </form>
-    </div>
-
-    <div class="mt-5">
         <form action="/profile/changeUsername" method="post">
             <input type="hidden" name="_csrf" value="${_csrf.token}">
             <div class="form-group">

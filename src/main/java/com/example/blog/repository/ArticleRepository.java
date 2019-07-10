@@ -9,6 +9,7 @@ import java.util.List;
 public interface ArticleRepository extends JpaRepository<Article, Long> {
 
     List<Article> findByAuthor(User user);
-    List<Article> findByVerifyTrueOrderByPublicationDateDesc();
+    List<Article> findByVerifyTrue();
     List<Article> findByVerifyFalse();
+    Long countByVerifyTrue();
 }

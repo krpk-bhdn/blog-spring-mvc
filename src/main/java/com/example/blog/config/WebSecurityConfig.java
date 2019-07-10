@@ -27,6 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .antMatchers(
                             "/",
                             "/article/**",
+                            "/blog/**",
                             "/forum/**",
                             "/registration",
                             "/static/**",

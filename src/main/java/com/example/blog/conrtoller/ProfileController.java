@@ -46,19 +46,6 @@ public class ProfileController {
         return "settings";
     }
 
-    @PostMapping("/settings/changeName")
-    public String changeFullName(
-            @RequestParam String fullName,
-            @AuthenticationPrincipal User user
-    ){
-        if(fullName != null && !fullName.isEmpty() && !user.getUsername().equals(fullName)){
-            user.setFullName(fullName);
-            userRepository.save(user);
-        }
-
-        return "redirect:/profile";
-    }
-
     @PostMapping("/settings/changeAvatar")
     public String changeAvatar(
             @AuthenticationPrincipal User user,
